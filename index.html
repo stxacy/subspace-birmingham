@@ -13,18 +13,18 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg:           #0b0b0e;
-      --bg-2:         #0f0f13;
-      --bg-3:         #141419;
-      --bg-4:         #19191f;
-      --accent:       #be1e1e;
-      --accent-dim:   rgba(190, 30, 30, 0.12);
-      --accent-hover: #d42424;
-      --text:         #d8d8dc;
-      --text-muted:   rgba(216, 216, 220, 0.48);
-      --text-dim:     rgba(216, 216, 220, 0.2);
-      --border:       rgba(255, 255, 255, 0.058);
-      --border-hover: rgba(255, 255, 255, 0.1);
+      --bg:           #09080f;
+      --bg-2:         #0d0b18;
+      --bg-3:         #121020;
+      --bg-4:         #17152a;
+      --accent:       #a8e808;
+      --accent-dim:   rgba(168, 232, 8, 0.1);
+      --accent-hover: #beff10;
+      --text:         #dddde0;
+      --text-muted:   rgba(221, 221, 224, 0.48);
+      --text-dim:     rgba(221, 221, 224, 0.2);
+      --border:       rgba(255, 255, 255, 0.065);
+      --border-hover: rgba(168, 232, 8, 0.18);
       --font:         'Space Grotesk', sans-serif;
       --mono:         'Space Mono', monospace;
       --ease:         cubic-bezier(0.16, 1, 0.3, 1);
@@ -174,9 +174,9 @@
       inset: 0;
       z-index: 0;
       background:
-        radial-gradient(ellipse 60% 80% at 75% 55%, rgba(190, 30, 30, 0.055) 0%, transparent 55%),
-        radial-gradient(ellipse 40% 60% at 90% 85%, rgba(190, 30, 30, 0.04) 0%, transparent 50%),
-        radial-gradient(ellipse 70% 40% at 20% 20%, rgba(22, 22, 32, 0.9) 0%, transparent 70%);
+        radial-gradient(ellipse 60% 80% at 75% 55%, rgba(168, 232, 8, 0.05) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 60% at 90% 85%, rgba(90, 60, 180, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse 70% 40% at 20% 20%, rgba(14, 12, 28, 0.95) 0%, transparent 70%);
     }
 
     /* subtle grid */
@@ -384,8 +384,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 65% 55% at 30% 70%, rgba(190, 30, 30, 0.14) 0%, transparent 60%),
-        linear-gradient(140deg, var(--bg-3) 0%, #180606 100%);
+        radial-gradient(ellipse 65% 55% at 30% 70%, rgba(90, 60, 180, 0.18) 0%, transparent 60%),
+        linear-gradient(140deg, var(--bg-3) 0%, #0c0b20 100%);
     }
 
     .about-visual-grid {
@@ -524,8 +524,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse 70% 70% at 40% 60%, rgba(190, 30, 30, 0.22) 0%, transparent 55%),
-        linear-gradient(145deg, #180606 0%, #08080f 55%, #0c0c14 100%);
+        radial-gradient(ellipse 70% 70% at 40% 60%, rgba(90, 60, 180, 0.28) 0%, transparent 55%),
+        linear-gradient(145deg, #0e0c20 0%, #09080f 55%, #0d0b1c 100%);
     }
 
     .ep-cover-hatch {
@@ -535,8 +535,8 @@
         -48deg,
         transparent,
         transparent 9px,
-        rgba(190, 30, 30, 0.038) 9px,
-        rgba(190, 30, 30, 0.038) 10px
+        rgba(168, 232, 8, 0.035) 9px,
+        rgba(168, 232, 8, 0.035) 10px
       );
     }
 
@@ -715,7 +715,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 75% 75% at 35% 35%, rgba(190, 30, 30, 0.3) 0%, transparent 70%);
+      background: radial-gradient(ellipse 75% 75% at 35% 35%, rgba(168, 232, 8, 0.22) 0%, transparent 70%);
     }
 
     /* small waveform bars inside thumb */
@@ -727,8 +727,8 @@
         90deg,
         transparent,
         transparent 3px,
-        rgba(190, 30, 30, 0.18) 3px,
-        rgba(190, 30, 30, 0.18) 4px
+        rgba(168, 232, 8, 0.14) 3px,
+        rgba(168, 232, 8, 0.14) 4px
       );
     }
 
@@ -946,7 +946,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse 90% 90% at var(--ox, 30%) var(--oy, 30%), rgba(190, 30, 30, var(--oi, 0.25)) 0%, transparent 70%);
+      background: radial-gradient(ellipse 90% 90% at var(--ox, 30%) var(--oy, 30%), rgba(168, 232, 8, var(--oi, 0.2)) 0%, transparent 70%);
     }
 
     /* diagonal stripe per mark */
