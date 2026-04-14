@@ -20,6 +20,9 @@
       --accent:       #a8e808;
       --accent-dim:   rgba(168, 232, 8, 0.1);
       --accent-hover: #beff10;
+      --pink:         #c038b8;
+      --pink-dim:     rgba(192, 56, 184, 0.12);
+      --pink-hover:   #d448ca;
       --text:         #dddde0;
       --text-muted:   rgba(221, 221, 224, 0.48);
       --text-dim:     rgba(221, 221, 224, 0.2);
@@ -64,6 +67,12 @@
       letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--text-muted);
+    }
+
+    /* section-header right labels get the pink */
+    .section-hd .mono-label,
+    .section-hd .mono-label-accent {
+      color: var(--pink);
     }
 
     .mono-label-accent {
@@ -335,6 +344,11 @@
       height: 4px;
       border-radius: 50%;
       background: var(--accent);
+    }
+
+    /* alternate marquee dots pink */
+    .marquee-item:nth-child(even) .marquee-dot {
+      background: var(--pink);
       flex-shrink: 0;
     }
 
@@ -807,7 +821,7 @@
       white-space: nowrap;
     }
 
-    .session-row:hover .session-arrow { color: var(--accent); }
+    .session-row:hover .session-arrow { color: var(--pink); }
 
     /* ─── Events ───────────────────────────────────────────────── */
     .events-bg { background: var(--bg-2); }
@@ -905,57 +919,78 @@
     .artist-cell {
       border-right: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding: 2rem;
+      padding: 1.75rem;
       transition: background 0.2s;
       cursor: default;
     }
 
     .artist-cell:hover { background: var(--bg-3); }
 
-    .artist-mark {
-      width: 44px;
-      height: 44px;
-      background: var(--bg-3);
+    /* image wrapper — fixed square so real photos + initials stay consistent */
+    .artist-img-wrap {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 1.15rem;
       border: 1px solid var(--border);
-      margin-bottom: 1.25rem;
-      position: relative;
+      background: var(--bg-4);
       overflow: hidden;
+      position: relative;
+      transition: border-color 0.25s;
     }
 
-    /* unique per-artist colour tint via CSS vars */
-    .artist-mark::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 90% 90% at var(--ox, 30%) var(--oy, 30%), rgba(168, 232, 8, var(--oi, 0.2)) 0%, transparent 70%);
+    .artist-cell:hover .artist-img-wrap {
+      border-color: var(--border-hover);
     }
 
-    /* diagonal stripe per mark */
-    .artist-mark::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: repeating-linear-gradient(
-        -45deg,
-        transparent, transparent 3px,
-        rgba(255,255,255,0.03) 3px, rgba(255,255,255,0.03) 4px
-      );
+    /* real photo from SoundCloud CDN */
+    .artist-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+      filter: saturate(0.25) brightness(0.82);
+      transition: filter 0.4s var(--ease);
     }
+
+    .artist-cell:hover .artist-img {
+      filter: saturate(1) brightness(1);
+    }
+
+    /* fallback initial block for artists without a found profile photo */
+    .artist-initial-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .artist-initial {
+      font-family: var(--mono);
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      /* alternate lime / pink per artist */
+    }
+
+    .artist-initial.lime { color: var(--accent); }
+    .artist-initial.pink { color: var(--pink); }
 
     .artist-cell h4 {
       font-size: 0.92rem;
       font-weight: 600;
       letter-spacing: -0.01em;
       color: var(--text);
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.28rem;
     }
 
+    /* role tag — pink */
     .artist-cell p {
       font-family: var(--mono);
-      font-size: 0.52rem;
+      font-size: 0.5rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: var(--pink);
+      opacity: 0.65;
     }
 
     /* ─── Contact / Footer ─────────────────────────────────────── */
@@ -1418,46 +1453,103 @@
     </div>
 
     <div class="artists-grid">
-      <div class="artist-cell reveal" style="--ox:25%;--oy:35%;--oi:0.28">
-        <div class="artist-mark" aria-hidden="true"></div>
+
+      <!-- Artorias — no public profile found, initial block -->
+      <div class="artist-cell reveal">
+        <div class="artist-img-wrap artist-initial-wrap">
+          <span class="artist-initial lime">A</span>
+        </div>
         <h4>Artorias</h4>
         <p>Dark DNB // Producer</p>
       </div>
-      <div class="artist-cell reveal delay-1" style="--ox:70%;--oy:25%;--oi:0.22">
-        <div class="artist-mark" aria-hidden="true"></div>
+
+      <!-- Konz — soundcloud.com/sam-konz -->
+      <div class="artist-cell reveal delay-1">
+        <div class="artist-img-wrap">
+          <img
+            src="https://i1.sndcdn.com/avatars-ywWnMhibC4WdpwXD-GHgPwA-t240x240.jpg"
+            alt="Konz"
+            class="artist-img"
+            loading="lazy"
+            onerror="this.parentElement.classList.add('artist-initial-wrap'); this.outerHTML='<span class=\'artist-initial lime\'>K</span>'"
+          >
+        </div>
         <h4>Konz</h4>
         <p>Dark DNB // DJ / Producer</p>
       </div>
-      <div class="artist-cell reveal delay-2" style="--ox:40%;--oy:70%;--oi:0.2">
-        <div class="artist-mark" aria-hidden="true"></div>
+
+      <!-- Perimita — no public profile found, initial block -->
+      <div class="artist-cell reveal delay-2">
+        <div class="artist-img-wrap artist-initial-wrap">
+          <span class="artist-initial pink">P</span>
+        </div>
         <h4>Perimita</h4>
         <p>Dark DNB // Producer</p>
       </div>
-      <div class="artist-cell reveal delay-3" style="--ox:60%;--oy:60%;--oi:0.24">
-        <div class="artist-mark" aria-hidden="true"></div>
+
+      <!-- Watz — soundcloud.com/bradley-james-watson -->
+      <div class="artist-cell reveal delay-3">
+        <div class="artist-img-wrap">
+          <img
+            src="https://i1.sndcdn.com/avatars-FKu7VLDeoCBTAtHj-NZpWKQ-t240x240.jpg"
+            alt="Watz"
+            class="artist-img"
+            loading="lazy"
+            onerror="this.parentElement.classList.add('artist-initial-wrap'); this.outerHTML='<span class=\'artist-initial lime\'>W</span>'"
+          >
+        </div>
         <h4>Watz</h4>
         <p>Dark DNB // Producer</p>
       </div>
-      <div class="artist-cell reveal" style="--ox:30%;--oy:50%;--oi:0.26">
-        <div class="artist-mark" aria-hidden="true"></div>
+
+      <!-- Armenez — soundcloud.com/armenez -->
+      <div class="artist-cell reveal">
+        <div class="artist-img-wrap">
+          <img
+            src="https://i1.sndcdn.com/avatars-dODQpzzBslilTm8k-Llm6pQ-t240x240.jpg"
+            alt="Armenez"
+            class="artist-img"
+            loading="lazy"
+            onerror="this.parentElement.classList.add('artist-initial-wrap'); this.outerHTML='<span class=\'artist-initial pink\'>A</span>'"
+          >
+        </div>
         <h4>Armenez</h4>
         <p>Dark DNB // Producer</p>
       </div>
-      <div class="artist-cell reveal delay-1" style="--ox:65%;--oy:40%;--oi:0.2">
-        <div class="artist-mark" aria-hidden="true"></div>
+
+      <!-- Hickupz — soundcloud.com/hickupz-uk -->
+      <div class="artist-cell reveal delay-1">
+        <div class="artist-img-wrap">
+          <img
+            src="https://i1.sndcdn.com/avatars-nfJpUyClL9rjqDtD-nWzmkA-t240x240.jpg"
+            alt="Hickupz"
+            class="artist-img"
+            loading="lazy"
+            onerror="this.parentElement.classList.add('artist-initial-wrap'); this.outerHTML='<span class=\'artist-initial lime\'>H</span>'"
+          >
+        </div>
         <h4>Hickupz</h4>
         <p>Dark DNB // DJ</p>
       </div>
-      <div class="artist-cell reveal delay-2" style="--ox:35%;--oy:65%;--oi:0.22">
-        <div class="artist-mark" aria-hidden="true"></div>
+
+      <!-- Cry — no public profile found, initial block -->
+      <div class="artist-cell reveal delay-2">
+        <div class="artist-img-wrap artist-initial-wrap">
+          <span class="artist-initial pink">C</span>
+        </div>
         <h4>Cry</h4>
         <p>Dark DNB // DJ</p>
       </div>
-      <div class="artist-cell reveal delay-3" style="--ox:55%;--oy:30%;--oi:0.25">
-        <div class="artist-mark" aria-hidden="true"></div>
+
+      <!-- Westy — no distinct profile confirmed, initial block -->
+      <div class="artist-cell reveal delay-3">
+        <div class="artist-img-wrap artist-initial-wrap">
+          <span class="artist-initial lime">W</span>
+        </div>
         <h4>Westy</h4>
         <p>Dark DNB // DJ / MC</p>
       </div>
+
     </div>
   </section>
 
