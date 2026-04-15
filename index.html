@@ -674,73 +674,87 @@
     .ep-cta:hover  { background: var(--accent-hover); }
     .ep-cta:active { transform: scale(0.98) translateY(1px); }
 
-    /* Additional singles below EP */
-    .singles-row {
+    /* ─── Latest Releases grid ──────────────────────────────────── */
+    .latest-hd {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 4rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .latest-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 0;
       border: 1px solid var(--border);
       border-top: none;
     }
 
-    .single-cell {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      padding: 1.75rem 2rem;
+    .latest-card {
       border-right: 1px solid var(--border);
       transition: background 0.2s;
       cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      display: block;
     }
 
-    .single-cell:last-child { border-right: none; }
-    .single-cell:hover { background: var(--bg-3); }
+    .latest-card:last-child { border-right: none; }
+    .latest-card:hover { background: var(--bg-3); }
 
-    .single-thumb {
-      width: 54px;
-      height: 54px;
-      flex-shrink: 0;
-      background: var(--bg-4);
-      border: 1px solid var(--border);
+    .latest-artwork {
       position: relative;
+      aspect-ratio: 1;
       overflow: hidden;
+      background: var(--bg-4);
+      border-bottom: 1px solid var(--border);
     }
 
-    .single-thumb::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 75% 75% at 35% 35%, rgba(168, 232, 8, 0.22) 0%, transparent 70%);
+    .latest-artwork-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.7) brightness(0.88);
+      transition: filter 0.35s var(--ease), transform 0.5s var(--ease);
     }
 
-    /* small waveform bars inside thumb */
-    .single-thumb::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image: repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 3px,
-        rgba(168, 232, 8, 0.14) 3px,
-        rgba(168, 232, 8, 0.14) 4px
-      );
+    .latest-card:hover .latest-artwork-img {
+      filter: saturate(1) brightness(1);
+      transform: scale(1.03);
     }
 
-    .single-text strong {
+    .latest-info {
+      padding: 1.25rem 1.5rem;
+    }
+
+    .latest-info strong {
       display: block;
       font-size: 0.88rem;
       font-weight: 600;
+      letter-spacing: -0.01em;
       color: var(--text);
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.3rem;
     }
 
-    .single-text span {
+    .latest-info .latest-artist {
       font-family: var(--mono);
       font-size: 0.55rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--text-muted);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .latest-info .latest-tag {
+      font-family: var(--mono);
+      font-size: 0.5rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--pink);
+      opacity: 0.75;
     }
 
     /* ─── Studio Sessions ─────────────────────────────────────── */
@@ -1143,8 +1157,8 @@
       .ep-cover   { aspect-ratio: 16/9; }
       .ep-details { border-left: none; border-top: 1px solid var(--border); padding: 2rem 1.5rem; }
 
-      .singles-row { grid-template-columns: 1fr; }
-      .single-cell  { border-right: none; border-bottom: 1px solid var(--border); }
+      .latest-grid  { grid-template-columns: 1fr; }
+      .latest-card  { border-right: none; border-bottom: 1px solid var(--border); }
 
       .events-grid { grid-template-columns: 1fr; }
 
@@ -1354,22 +1368,81 @@
         </div>
       </div>
 
-      <!-- Singles row -->
-      <div class="singles-row reveal delay-1">
-        <div class="single-cell">
-          <div class="single-thumb" aria-hidden="true"></div>
-          <div class="single-text">
+      <!-- Latest Releases header -->
+      <div class="latest-hd reveal">
+        <p class="mono-label-accent">// Latest Releases</p>
+        <a href="https://soundcloud.com/subspacebirmingham" target="_blank" rel="noopener noreferrer" class="mono-label" style="text-decoration:none; transition: color 0.2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color=''">All releases →</a>
+      </div>
+
+      <!-- Latest Releases grid — artworks from SoundCloud CDN -->
+      <div class="latest-grid">
+
+        <!-- MOURNE — LEDGER LP (most recent, Mar 2026) -->
+        <a
+          href="https://soundcloud.com/subspacebirmingham"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="latest-card reveal"
+        >
+          <div class="latest-artwork">
+            <img
+              src="https://i1.sndcdn.com/artworks-VwDSmxDwYIvjV8dr-2RCq4g-t500x500.jpg"
+              alt="Mourne — Ledger LP artwork"
+              class="latest-artwork-img"
+              loading="lazy"
+            >
+          </div>
+          <div class="latest-info">
+            <strong>Ledger LP</strong>
+            <span class="latest-artist">Mourne</span>
+            <span class="latest-tag">Subspace Birmingham — 2026</span>
+          </div>
+        </a>
+
+        <!-- Hickupz — Cusp (via Subspace Premieres) -->
+        <a
+          href="https://soundcloud.com/subspacebirmingham"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="latest-card reveal delay-1"
+        >
+          <div class="latest-artwork">
+            <img
+              src="https://i1.sndcdn.com/artworks-fbt6uFqyF2mceJtX-oQTxew-t500x500.jpg"
+              alt="Hickupz — Cusp artwork"
+              class="latest-artwork-img"
+              loading="lazy"
+            >
+          </div>
+          <div class="latest-info">
+            <strong>Cusp</strong>
+            <span class="latest-artist">Hickupz</span>
+            <span class="latest-tag">Subspace Birmingham — Premiere</span>
+          </div>
+        </a>
+
+        <!-- ARMENEZ — Eventide (track now private; artwork via label page) -->
+        <a
+          href="https://soundcloud.com/armenez"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="latest-card reveal delay-2"
+        >
+          <div class="latest-artwork">
+            <img
+              src="https://i1.sndcdn.com/artworks-5Exeo86R2AD2PaPH-aHcgHw-t500x500.jpg"
+              alt="Armenez — Eventide artwork"
+              class="latest-artwork-img"
+              loading="lazy"
+            >
+          </div>
+          <div class="latest-info">
             <strong>Eventide</strong>
-            <span>Armenez — 2024</span>
+            <span class="latest-artist">Armenez</span>
+            <span class="latest-tag">Subspace Birmingham — 2024</span>
           </div>
-        </div>
-        <div class="single-cell">
-          <div class="single-thumb" aria-hidden="true"></div>
-          <div class="single-text">
-            <strong>Ghost (Subspace)</strong>
-            <span>Artorias — Lost Transmission EP</span>
-          </div>
-        </div>
+        </a>
+
       </div>
     </div>
   </div>
@@ -1454,10 +1527,16 @@
 
     <div class="artists-grid">
 
-      <!-- Artorias — no public profile found, initial block -->
+      <!-- Artorias — soundcloud.com/artoriasdnb -->
       <div class="artist-cell reveal">
-        <div class="artist-img-wrap artist-initial-wrap">
-          <span class="artist-initial lime">A</span>
+        <div class="artist-img-wrap">
+          <img
+            src="https://i1.sndcdn.com/avatars-SrI6TpdIkrEs2QyK-LC0zRQ-t240x240.jpg"
+            alt="Artorias"
+            class="artist-img"
+            loading="lazy"
+            onerror="this.parentElement.classList.add('artist-initial-wrap'); this.outerHTML='<span class=\'artist-initial lime\'>A</span>'"
+          >
         </div>
         <h4>Artorias</h4>
         <p>Dark DNB // Producer</p>
@@ -1478,10 +1557,16 @@
         <p>Dark DNB // DJ / Producer</p>
       </div>
 
-      <!-- Perimita — no public profile found, initial block -->
+      <!-- Perimita — soundcloud.com/perimita -->
       <div class="artist-cell reveal delay-2">
-        <div class="artist-img-wrap artist-initial-wrap">
-          <span class="artist-initial pink">P</span>
+        <div class="artist-img-wrap">
+          <img
+            src="https://i1.sndcdn.com/avatars-YkE9kZPZo0aghYoH-j2UUmA-t240x240.jpg"
+            alt="Perimita"
+            class="artist-img"
+            loading="lazy"
+            onerror="this.parentElement.classList.add('artist-initial-wrap'); this.outerHTML='<span class=\'artist-initial pink\'>P</span>'"
+          >
         </div>
         <h4>Perimita</h4>
         <p>Dark DNB // Producer</p>
@@ -1532,10 +1617,16 @@
         <p>Dark DNB // DJ</p>
       </div>
 
-      <!-- Cry — no public profile found, initial block -->
+      <!-- Cry — soundcloud.com/cry-uk -->
       <div class="artist-cell reveal delay-2">
-        <div class="artist-img-wrap artist-initial-wrap">
-          <span class="artist-initial pink">C</span>
+        <div class="artist-img-wrap">
+          <img
+            src="https://i1.sndcdn.com/avatars-P61KtbHPv92t4NTQ-eEMyFw-t240x240.jpg"
+            alt="Cry"
+            class="artist-img"
+            loading="lazy"
+            onerror="this.parentElement.classList.add('artist-initial-wrap'); this.outerHTML='<span class=\'artist-initial pink\'>C</span>'"
+          >
         </div>
         <h4>Cry</h4>
         <p>Dark DNB // DJ</p>
@@ -1649,12 +1740,7 @@
       });
     });
 
-    // Single cells — open SoundCloud
-    document.querySelectorAll('.single-cell').forEach(cell => {
-      cell.addEventListener('click', () => {
-        window.open('https://soundcloud.com/subspacebirmingham', '_blank', 'noopener,noreferrer');
-      });
-    });
+    // latest-card links are native <a> elements — no extra JS needed
   </script>
 </body>
 </html>
