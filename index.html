@@ -559,6 +559,16 @@
         linear-gradient(145deg, #e8e6e3 0%, #f0efed 55%, #e5e3e0 100%);
     }
 
+    .ep-cover-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+    }
+
     .ep-cover-hatch {
       position: absolute;
       inset: 0;
@@ -1345,8 +1355,11 @@
       <!-- Lost Transmission EP -->
       <div class="ep-block reveal">
         <div class="ep-cover">
-          <div class="ep-cover-base"></div>
-          <div class="ep-cover-hatch"></div>
+          <img
+            src="assets/losttran.png"
+            alt="Lost Transmission EP — Subspace Birmingham"
+            class="ep-cover-img"
+          >
           <div class="ep-cover-tag">SBX — 001</div>
           <div class="ep-cover-info">
             <h3>Lost Transmission EP</h3>
@@ -1474,7 +1487,7 @@
         >
           <div class="latest-artwork">
             <img
-              src="https://i1.sndcdn.com/artworks-5Exeo86R2AD2PaPH-aHcgHw-t500x500.jpg"
+              src="assets/armenez_eventide.jpg"
               alt="Armenez — Eventide artwork"
               class="latest-artwork-img"
               loading="lazy"
