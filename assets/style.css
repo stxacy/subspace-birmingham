@@ -1026,6 +1026,82 @@ body::after {
   cursor: default;
 }
 
+/* ─── Artists Carousel ─────────────────────────────────────── */
+.artists-carousel {
+  border: 1px solid var(--border);
+  margin-top: 1rem;
+  overflow: hidden;
+}
+
+.artists-track {
+  display: flex;
+  flex-wrap: nowrap;
+  transition: transform 0.6s var(--ease-expo);
+  will-change: transform;
+}
+
+.artists-carousel .artist-cell {
+  flex-shrink: 0;
+  border-bottom: none;
+  border-right: 1px solid var(--border);
+}
+
+.artists-carousel .artist-cell:last-child {
+  border-right: none;
+}
+
+.artists-carousel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border);
+  background: var(--bg-2);
+}
+
+.carousel-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border);
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+
+.carousel-btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+.carousel-btn:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.carousel-btn svg {
+  width: 13px;
+  height: 9px;
+  fill: none;
+  stroke: var(--text-muted);
+  transition: stroke 0.2s;
+}
+
+.carousel-btn:hover:not(:disabled) svg {
+  stroke: var(--accent);
+}
+
+.carousel-counter {
+  font-family: var(--mono);
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
 .artist-cell:hover { background: var(--bg-3); }
 
 /* image wrapper — fixed square so real photos + initials stay consistent */
